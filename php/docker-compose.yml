@@ -1,0 +1,30 @@
+ersion: "3.9"
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - default
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: db_teste
+      MYSQL_USER: phsnow
+      MYSQL_PASSWORD: ordep1123
+      MYSQL_ROOT_PASSWORD: 12345
+    volumes:
+      - db_data:/var/lib/mysql
+
+    networks:
+      - default
+
+volumes:
+  db_data:
