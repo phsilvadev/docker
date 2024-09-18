@@ -1,0 +1,27 @@
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: exempl
+      MYSQL_DATABASE: teste
+      MYSQL_USER: nazare
+      MYSQL_PASSWORD: 12345678
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: nazare
+      WORDPRESS_DB_PASSWORD: 12345678
+      WORDPRESS_DB_NAME: teste
+
+volumes:
+  db_data:

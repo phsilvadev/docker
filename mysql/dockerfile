@@ -1,0 +1,17 @@
+FROM mysql:latest
+
+ENV MYSQL_DATABASE=teste \
+    MYSQL_USER=user \
+    MYSQL_PASSWORD=my_password \
+    MYSQL_ROOT_PASSWORD=root_password
+
+COPY . /docker-entrypoint-initdb.d/
+
+# Ajustando o timezone, se necessário (opcional)
+# RUN echo "America/Sao_Paulo" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+
+EXPOSE 3306
+
+
+# Comando padrão para iniciar o MySQL
+CMD ["mysqld"]

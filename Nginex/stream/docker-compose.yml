@@ -1,0 +1,12 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: . # Diretório onde o Dockerfile está localizado
+    ports:
+      - "8080:80"
+    volumes:
+      - C:\Users\Nazare\Downloads\teste:/var/www/videos
+    container_name: my-nginx-container
